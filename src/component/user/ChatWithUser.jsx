@@ -1,16 +1,15 @@
 import React from "react";
+import { useParams } from "react-router-dom";
 
 export default function ChatWithUser() {
+
+  const {id,name} = useParams()
+  
+
+
   return (
     <div>
-      <ChatWithUserDesign />
-    </div>
-  );
-}
-
-export const ChatWithUserDesign = () => {
-  return (
-    <div className="mt-10" >
+      <div className="mt-10" >
       <div class="max-w-screen-md mx-auto flex flex-col h-screen bg-black">
 
         <div class="flex-1 overflow-y-auto p-4">
@@ -24,7 +23,7 @@ export const ChatWithUserDesign = () => {
                 class="w-8 h-8 rounded-full mr-2"
               />
               <div class="bg-pink-600 p-3 rounded-lg font-bold text-white max-w-[70%]">
-                Hi there!
+               {name}
               </div>
               
             </div>
@@ -69,5 +68,7 @@ export const ChatWithUserDesign = () => {
 
       </div>
     </div>
+    </div>
   );
-};
+}
+

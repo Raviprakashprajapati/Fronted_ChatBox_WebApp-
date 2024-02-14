@@ -20,7 +20,7 @@ export default function App() {
         <Route path="/profile" element={<Profile />} />
         <Route path="/user" element={<AllUsers />} />
 
-        <Route path="/chat/:id" element={<ChatWithUser />} />
+        <Route path="/chat/:id/:name" element={<ChatWithUser />} />
       </Routes>
     </BrowserRouter>
   );

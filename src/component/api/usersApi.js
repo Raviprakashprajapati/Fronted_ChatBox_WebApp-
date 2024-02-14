@@ -15,13 +15,12 @@ if(token){
     axiosWithToken.defaults.headers['Authorization'] = 'Bearer ' + token
 }
 
-export const LoginAPI = async(payload) =>{
+export const getSideBarUserAPI = async() =>{
     try {
-       
-        const response = await axios.post(`${url}/api/auth/login`,payload)
-        return response.data
-        
+
+        const response = await axiosWithToken.get(`${url}/api/users`)
+        return response.data        
     } catch (error) {
-        console.log("Error in login time ",error)
+        console.log("Error in sidebar User ", error);
     }
-} 
+}

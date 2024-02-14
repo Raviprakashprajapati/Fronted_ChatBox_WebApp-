@@ -1,12 +1,20 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { LoginAPI } from "../api/authApi.js";
+import { useDispatch } from "react-redux";
+import { setCurrentUser } from "../store/redux-features/userSlice.js";
 
 export default function Login() {
+
 
   const navigate = useNavigate()
   const [username,setUsername] = useState("")
   const [password,setPassword] = useState("")
+  const naviagte  = useNavigate()
+  const [flag,setFlag] = useState(false)
+  const dispatch = useDispatch()
+
+  // useEffect(()=>{},[flag,setFlag])
 
 
   function handleSubmit(e){
@@ -15,7 +23,14 @@ export default function Login() {
        
       LoginAPI({username,password})
       .then((value)=>{
-          console.log(value)
+          // console.log(value)
+
+          localStorage.clear()
+          localStorage.setItem("user",JSON.stringify(value.data?.user))
+          localStorage.setItem("accessToken",value.data?.accessToken)
+          dispatch(setCurrentUser(value?.data?.user))
+          naviagte("/profile")
+          // setFlag(!flag)
       })
       .catch((err)=>{
         console.log("errro in login API: " + err)
